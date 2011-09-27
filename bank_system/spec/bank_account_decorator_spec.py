@@ -1,13 +1,17 @@
+import sys
+sys.path.append("home/ruhan/eis-examples-mari")
+sys.path.append("/home/ruhan/eis-mari")
+
 import unittest
 from should_dsl import should, should_not
 from domain.node.machine import Machine
 from bank_system.decorators.bank_account_decorator import BankAccountDecorator
 from domain.supportive.association_error import AssociationError
 
-
 class BankAccountDecoratorSpec(unittest.TestCase):
 
     def setUp(self):
+        self.a_bank_account_decorator = Brand.objects.create(name="Dell")
         self.a_bank_account_decorator = BankAccountDecorator('12345-6')
         #test doubles won't work given type checking rules, using classic
         self.a_machine = Machine()
