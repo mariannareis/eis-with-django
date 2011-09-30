@@ -4,7 +4,7 @@
 #Para movements => configuracao.
 
 import sys, os
-sys.path.append("home/ruhan/eis-mari")
+sys.path.append("home/mari/eis-mari")
 
 # Set the DJANGO_SETTINGS_MODULE environment variable.
 os.environ['DJANGO_SETTINGS_MODULE'] = "mewe.settings"
