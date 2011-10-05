@@ -89,9 +89,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'bank_system'
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
+    'bank_system',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

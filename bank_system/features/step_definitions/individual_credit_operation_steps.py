@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append("home/mari/eis-examples-mari/")
+sys.path.append("/home/mari/eis-mari/")
+
+print sys.path
+
 from lettuce import *
 from should_dsl import should
 from domain.node.person import Person
