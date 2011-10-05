@@ -2,18 +2,9 @@
 #Para resources => subclasses. (tal como marca e modelo, para produto...)
 #Para nodes => decorators.
 #Para movements => configuracao.
-
-import sys, os
-sys.path.append("home/mari/eis-examples-mari")
-sys.path.append("/home/mari/eis-mari")
-
-print sys.path
-# Set the DJANGO_SETTINGS_MODULE environment variable.
-os.environ['DJANGO_SETTINGS_MODULE'] = "eis-examples-mari.settings"
-
 from django.db import models
 from should_dsl import should
-#from 'home/mari/eis-mari/domain/resource/work_item.py' import WorkItem
+from domain.resource.work_item import WorkItem
 from domain.base.decorator import Decorator
 from domain.node.person import Person
 from domain.supportive.rule import rule

@@ -7,7 +7,7 @@ class BankSystemRuleBase(CoreRules):
     @rule('association')
     def should_be_instance_of_bank_account(self, associated):
         '''Associated object should be instance of Bank Account Decorator'''
-        from bank_system.decorators.bank_account_decorator import BankAccountDecorator
+        from bank_system.models import BankAccountDecorator
         try: associated |should| be_instance_of(BankAccountDecorator)
         except ShouldNotSatisfied: return False
         else: return True

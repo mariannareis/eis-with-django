@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
-import sys
-sys.path.append("home/mari/eis-examples-mari/")
-sys.path.append("/home/mari/eis-mari/")
-
-print sys.path
-
+import sys#, os
+from django.test.client import Client
+sys.path.append("home/mari/eis-examples-mari")
+sys.path.append("/home/mari/eis-mari")
+#os.environ['DJANGO_SETTINGS_MODULE'] = 'eis-examples-mari.settings'
+from django.conf import settings
 from lettuce import *
 from should_dsl import should
 from domain.node.person import Person
 from domain.node.machine import Machine
 from domain.movement.process import Process
 from bank_system.decorators.credit_analyst_decorator import CreditAnalystDecorator
-from bank_system.decorators.bank_account_decorator import BankAccountDecorator
+from bank_system.models import BankAccountDecorator
 from bank_system.decorators.employee_decorator import EmployeeDecorator
 from domain.supportive.rule_manager import RuleManager
 from bank_system.rules.bank_system_rule_base import BankSystemRuleBase
 from fluidity.machine import StateMachine, state, transition, InvalidTransition
 from xfluidity import StateMachineConfigurator
 from loan_process_template import LoanProcess
-
 
 #
 # ATTENTION: you can't run more than one example per scenario, otherwise Fluidity
@@ -27,6 +26,10 @@ from loan_process_template import LoanProcess
 #
 
 #changes the default rule base
+@before.all
+def set_browser():
+    world.browser = Client()
+
 @before.all
 def change_rule_base():
     RuleManager.rule_base = BankSystemRuleBase()
@@ -44,7 +47,7 @@ def given_i_am_a_registered_credit_analyst(step):
 @step(u'And an individual customer with account number (.+) asks for a personal loan')
 def and_an_individual_customer_with_account_number_account_number_asks_for_a_personal_loan(step, account_number):
     world.a_machine = Machine()
-    world.account = BankAccountDecorator(account_number)
+    world.account = BankAccountDecorator(number=account_number)
     world.account.average_credit = 2501
     world.account.decorate(world.a_machine)
 
