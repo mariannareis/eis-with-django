@@ -4,7 +4,6 @@ from domain.supportive.association_error import AssociationError
 from domain.resource.work_item import WorkItem
 from domain.supportive.rule_manager import RuleManager
 
-
 class LoanRequest(WorkItem):
     ''' A Loan Request has a value, a date and time, and an associated analyst '''
     def __init__(self, account, value, analyst):

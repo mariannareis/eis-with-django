@@ -15,7 +15,7 @@ class BankSystemRuleBase(CoreRules):
     @rule('association')
     def should_be_instance_of_credit_analyst(self, associated):
         '''Associated object should be instance of Credit Analyst Decorator'''
-        from bank_system.decorators.credit_analyst_decorator import CreditAnalystDecorator
+        from bank_system.models import CreditAnalystDecorator
         try: associated |should| be_instance_of(CreditAnalystDecorator)
         except ShouldNotSatisfied: return False
         else: return True
@@ -31,7 +31,7 @@ class BankSystemRuleBase(CoreRules):
     @rule('association')
     def should_have_employee_decorator(self, associated):
         '''Associated object should be previously decorated by Employee'''
-        from bank_system.decorators.employee_decorator import EmployeeDecorator
+        from bank_system.models import EmployeeDecorator
         import domain.supportive.contract_matchers
         try: associated |should| be_decorated_by(EmployeeDecorator)
         except ShouldNotSatisfied: return False

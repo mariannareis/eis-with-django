@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
-import sys#, os
+import sys
 from django.test.client import Client
 sys.path.append("home/mari/eis-examples-mari")
 sys.path.append("/home/mari/eis-mari")
-#os.environ['DJANGO_SETTINGS_MODULE'] = 'eis-examples-mari.settings'
+
 from django.conf import settings
 from lettuce import *
 from should_dsl import should
+
 from domain.node.person import Person
 from domain.node.machine import Machine
 from domain.movement.process import Process
-from bank_system.decorators.credit_analyst_decorator import CreditAnalystDecorator
-from bank_system.models import BankAccountDecorator
-from bank_system.decorators.employee_decorator import EmployeeDecorator
-from domain.supportive.rule_manager import RuleManager
+#from bank_system.decorators.credit_analyst_decorator import CreditAnalystDecorator
+from bank_system.models import *
 from bank_system.rules.bank_system_rule_base import BankSystemRuleBase
+
+from domain.supportive.rule_manager import RuleManager
 from fluidity.machine import StateMachine, state, transition, InvalidTransition
 from xfluidity import StateMachineConfigurator
 from loan_process_template import LoanProcess
@@ -41,7 +42,7 @@ def given_i_am_a_registered_credit_analyst(step):
      world.a_person = Person()
      an_employee_decorator = EmployeeDecorator()
      an_employee_decorator.decorate(world.a_person)
-     world.credit_analyst = CreditAnalystDecorator('09876-5')
+     world.credit_analyst = CreditAnalystDecorator(register='09876-5')
      world.credit_analyst.decorate(world.a_person)
 
 @step(u'And an individual customer with account number (.+) asks for a personal loan')
